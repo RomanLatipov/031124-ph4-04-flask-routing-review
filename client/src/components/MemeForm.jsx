@@ -2,17 +2,18 @@ import { useState } from 'react'
 
 function MemeForm({ setMemes }) {
 
-    const URL = 'http://localhost:3000/memes'
+    const URL = '/api/memes'
     const [img_url, setImgURL] = useState("")
     const [caption, setCaption] = useState("")
 
     async function handleSubmit(e) {
+        const likes = 0
         e.preventDefault()
         
         const options = {
             method: "POST",
             headers: { "Content-Type": "application/json", "Accept": "application/json" },
-            body: JSON.stringify({ img_url, caption })
+            body: JSON.stringify({ img_url, caption, likes})
         }
 
         const res = await fetch(URL, options)
